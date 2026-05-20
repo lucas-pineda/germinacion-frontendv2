@@ -1,0 +1,132 @@
+/* ──────────────────────────────────────────────────────────────────────────────
+   src/index.css
+   Estilos globales y variables de diseño de VERDEX.
+   ────────────────────────────────────────────────────────────────────────────── */
+
+@import url('https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Sora:wght@300;400;500;600;700&display=swap');
+
+/* ── Variables de diseño ──────────────────────────────────────────────────────── */
+:root {
+  --bg:          #050f0a;
+  --bg2:         #0a1a11;
+  --bg3:         #0f2419;
+  --card:        #0d1f15;
+  --border:      #1a3d28;
+  --border-glow: #2a6645;
+  --green:       #2ecc71;
+  --green-dim:   #1a7a44;
+  --green-bright:#39ff8f;
+  --teal:        #1abc9c;
+  --amber:       #f39c12;
+  --red:         #e74c3c;
+  --blue:        #3498db;
+  --text:        #d4edd9;
+  --text-muted:  #6b9b7a;
+  --text-dim:    #3d6b50;
+}
+
+/* ── Reset ────────────────────────────────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html  { scroll-behavior: smooth; }
+body  {
+  font-family: 'Sora', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ── Scrollbar ────────────────────────────────────────────────────────────────── */
+::-webkit-scrollbar       { width: 4px; height: 4px; }
+::-webkit-scrollbar-track { background: var(--bg); }
+::-webkit-scrollbar-thumb { background: var(--green-dim); border-radius: 2px; }
+
+/* ── Tipografía helper ────────────────────────────────────────────────────────── */
+.mono { font-family: 'Space Mono', monospace; }
+
+/* ── Animaciones ─────────────────────────────────────────────────────────────── */
+@keyframes pulso      { 0%,100%{opacity:1}  50%{opacity:.35} }
+@keyframes aparecer   { from{opacity:0;transform:translateY(14px)} to{opacity:1;transform:none} }
+@keyframes flotar     { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-7px)} }
+@keyframes escanear   { 0%{transform:translateY(-60px)} 100%{transform:translateY(100vh)} }
+@keyframes rotarLento { to{transform:rotate(360deg)} }
+
+.aparecer { animation: aparecer .45s ease both; }
+.flotando { animation: flotar  5s ease-in-out infinite; }
+
+/* ── Botones ──────────────────────────────────────────────────────────────────── */
+.btn {
+  display: inline-flex; align-items: center; gap: 8px;
+  padding: 10px 22px; border-radius: 7px;
+  border: 1px solid var(--border-glow);
+  background: transparent; color: var(--green);
+  font-family: 'Sora', sans-serif; font-size: 14px; font-weight: 500;
+  cursor: pointer; transition: all .2s; letter-spacing: .4px;
+}
+.btn:hover        { background: #2ecc7120; border-color: var(--green); box-shadow: 0 0 14px #2ecc7133; }
+.btn-primary      { background: #2ecc711f; border-color: var(--green); }
+.btn-primary:hover{ background: #2ecc7138; }
+.btn:disabled     { opacity: .45; cursor: not-allowed; }
+
+/* ── Tarjetas ─────────────────────────────────────────────────────────────────── */
+.card {
+  background: var(--card); border: 1px solid var(--border);
+  border-radius: 10px; padding: 20px; transition: border-color .2s;
+}
+.card:hover { border-color: var(--border-glow); }
+
+/* ── Badge ────────────────────────────────────────────────────────────────────── */
+.badge {
+  display: inline-flex; align-items: center; gap: 5px;
+  padding: 3px 10px; border-radius: 4px;
+  font-size: 10px; font-weight: 700; letter-spacing: .9px; text-transform: uppercase;
+}
+
+/* ── Sidebar ──────────────────────────────────────────────────────────────────── */
+.sidebar {
+  position: fixed; top: 0; left: 0; width: 224px; height: 100vh;
+  background: var(--bg2); border-right: 1px solid var(--border);
+  display: flex; flex-direction: column; z-index: 200;
+}
+.nav-item {
+  display: flex; align-items: center; gap: 10px;
+  padding: 11px 20px; cursor: pointer; transition: all .15s;
+  font-size: 13px; color: var(--text-muted); border-left: 2px solid transparent;
+  user-select: none;
+}
+.nav-item:hover  { background: #2ecc710c; color: var(--text); }
+.nav-item.activo { background: #2ecc7116; color: var(--green); border-left-color: var(--green); }
+.nav-icono       { width: 18px; flex-shrink: 0; }
+
+/* ── Topbar ───────────────────────────────────────────────────────────────────── */
+.topbar {
+  position: fixed; top: 0; left: 224px; right: 0; height: 54px;
+  background: #0a1a11dd; backdrop-filter: blur(14px);
+  border-bottom: 1px solid var(--border);
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 0 26px; z-index: 199;
+}
+
+/* ── Layout principal ─────────────────────────────────────────────────────────── */
+.contenido { margin-left: 224px; padding: 76px 26px 48px; min-height: 100vh; }
+
+/* ── Input chat ───────────────────────────────────────────────────────────────── */
+.chat-input {
+  flex: 1; background: var(--bg3); border: 1px solid var(--border);
+  border-radius: 8px; padding: 11px 14px;
+  color: var(--text); font-family: 'Sora', sans-serif; font-size: 13px; outline: none;
+  transition: border-color .2s;
+}
+.chat-input:focus       { border-color: #2ecc7188; }
+.chat-input::placeholder{ color: var(--text-dim); }
+
+/* ── Responsive ───────────────────────────────────────────────────────────────── */
+@media (max-width: 800px) {
+  .sidebar   { width: 54px; }
+  .nav-item  { justify-content: center; padding: 13px 0; }
+  .nav-item span { display: none; }
+  .nav-item.activo { border-left: none; border-bottom: 2px solid var(--green); }
+  .topbar    { left: 54px; }
+  .contenido { margin-left: 54px; padding: 68px 14px 36px; }
+  .ocultar-movil { display: none !important; }
+}
