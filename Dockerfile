@@ -24,8 +24,11 @@ FROM nginx:stable-alpine
 # Copiar archivos generados por Vite
 COPY --from=builder /app/dist /usr/share/nginx/html
 
+# Copiar configuración personalizada de Nginx
+COPY nginx.conf /etc/nginx/conf.d/default.conf
+
 # Exponer puerto
-EXPOSE 80
+EXPOSE 3000
 
 # Iniciar nginx
 CMD ["nginx", "-g", "daemon off;"]
