@@ -5,8 +5,7 @@
   "type": "module",
   "scripts": {
     "build": "vite build",
-    "dev": "vite",
-    "start": "node server.js"
+    "dev": "vite"
   },
   "dependencies": {
     "react": "18.3.1",
